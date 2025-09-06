@@ -12,8 +12,8 @@ public class Registeration {
     public static void RegisterWithValidUser() throws InterruptedException {
         driver = DriverFactory.getDriver();
         driver.get("https://practicesoftwaretesting.com/auth/register");
-        driver.findElement(By.id("first_name")).sendKeys("Mohamed");
-        driver.findElement(By.id("last_name")).sendKeys("Ehab");
+        driver.findElement(By.id("first_name")).sendKeys("Kerolos");
+        driver.findElement(By.id("last_name")).sendKeys("Samaan");
         driver.findElement(By.id("dob")).sendKeys("2006-11-11");
         driver.findElement(By.id("street")).sendKeys("NasrRoad");
         driver.findElement(By.id("postal_code")).sendKeys("332255");
@@ -28,6 +28,10 @@ public class Registeration {
         Data.password_new = password;
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.xpath("/html/body/app-root/div/app-register/div/div/div/form/div/button")).click();
+
+
+
+
         Thread.sleep(3000);
     }
 }
