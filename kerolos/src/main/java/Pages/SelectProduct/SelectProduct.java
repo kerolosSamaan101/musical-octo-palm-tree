@@ -10,10 +10,9 @@ import java.time.Duration;
 import static Utilities.Selenium.DriverFactory.driver;
 
 public class SelectProduct {
-    public static void Selection(String productName) throws InterruptedException {
+    public static void Selection(String productName,int numberOfClicks) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // Navigate to Categorize -> Hand Tools
         driver.findElement(By.linkText("Categories")).click();
         driver.findElement(By.linkText("Hand Tools")).click();
 
@@ -24,13 +23,37 @@ public class SelectProduct {
         );
         product.click();
 
-        // Wait for Add to Cart button
+
+
+        WebElement increaseQuantityBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.cssSelector("button[aria-label='Increase quantity']")
+                )
+        );
+
+        for (int i = 0; i < numberOfClicks-1; i++) {
+            increaseQuantityBtn.click();
+            Thread.sleep(500);
+        }
+
+
+
         WebElement addToCartBtn = wait.until(
                 ExpectedConditions.elementToBeClickable(By.id("btn-add-to-cart"))
         );
 
-        // Click Add to Cart
+
         addToCartBtn.click();
+
+        WebElement successAlert = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("div.toast-success")
+                )
+        );
+
+        System.out.println("Success Alert: " + successAlert.getText());
+
+
 
         Thread.sleep(2000);
     }

@@ -14,7 +14,7 @@ public class SelectProductTest {
 
     @org.testng.annotations.Test(priority = 1)
     public void RegisterWithUser() throws InterruptedException {
-        sel.Selection("Combination Pliers");
+        sel.Selection("Combination Pliers",3);
     }
 }
 
